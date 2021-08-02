@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <script text="text/javascript">
+        $(function () {
+            $('#membership_btn').click(function () {
+                var obj = { 
+                    id : $('#id').val(),
+                    password : $('#password').val(),
+                    name : $('#name').val(),
+                    tel : $('#tel').val()
+                }
+                console.log(obj)
+                $.ajax({
+                method: 'POST',
+                url : '/memberadd',
+                data : obj
+                }).done(function(result) {
+                   if(result=="success"){
+                       alert("회원가입 성공")
+                       location.href = "/login"
+                   }
+
+                }).fail(function(error) {
+                    console.log(error)
+                });
+        })
+    })
+    </script>
+    <title>membership.html</title>
+</head>
+
+<body>
+    <h4>회원가입</h4>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">아이디: </label>
+            <input type="text" class="form-control" id="id" placeholder="id">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">패스워드: </label>
+            <input type="password" class="form-control" id="password" placeholder="password">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">패스워드 확인: </label>
+            <input type="password" class="form-control" placeholder="repeat password">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">이름: </label>
+            <input type="text" class="form-control" id ="name" >
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">전화번호: </label>
+            <input type="text" class="form-control" id = "tel" >
+        </div>
+        <button type="button" id="membership_btn" class="btn btn-outline-secondary">회원가입</button>
+</body>
+
+</html>
